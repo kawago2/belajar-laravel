@@ -9,8 +9,13 @@ class Siswa extends Model
 {
     use HasFactory;
 
-    protected $table = 'siswas';
+    protected $table = 'siswa';
     protected $guarded = ['id'];
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class);
+    }
 
     // protected $primayKey = 'id_siswa';
     // protected $fillable = [

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SiswaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,18 +45,14 @@ Route::get('create', function () {
     return view('create');
 });
 
-Route::resource('siswa', SiswaController::class);
+Route::resource('siswa', SiswaController::class)->middleware(['auth', 'admin']);
+Auth::routes();
 
 // Route::get('siswa', [SiswaController::class, 'index']);
 // Route::get('tambahdatasiswa', [SiswaController::class, 'create']);
 
 
-
-
-
-
-
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
@@ -114,3 +111,7 @@ Route::resource('siswa', SiswaController::class);
 // Route::delete('users/{id}', function ($id) {
 
 // });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
